@@ -12,18 +12,21 @@
     <h1>Your Match Room Details</h1>
     <p id="timer">Waiting for the match to start...</p>
     <div id="roomDetails">
-        <p>Room ID: 1235</p>
-        <p>Password: abd</p>
+        <p>Room ID: 12345</p>
+        <p>Password: abcd</p>
     </div>
 
     <script>
-        var matchStartTime = new Date("Oct 22, 2024 16:40:30").getTime();
+        // Set match start time to 16:55 (4:55 PM)
+        var matchStartTime = new Date();
+        matchStartTime.setHours(16);  // Set hours to 16 (4 PM)
+        matchStartTime.setMinutes(55); // Set minutes to 55
 
         var countdown = setInterval(function() {
             var now = new Date().getTime();
             var timeLeft = matchStartTime - now;
 
-            if (timeLeft <= 600000) {  // 600000 ms = 10 minutes
+            if (timeLeft <= 600000) {  // 600000 ms = 10 minutes before match
                 document.getElementById("timer").style.display = "none";
                 document.getElementById("roomDetails").style.display = "block";
                 clearInterval(countdown);
