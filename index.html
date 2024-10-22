@@ -10,30 +10,30 @@
 </head>
 <body>
     <h1>Your Match Room Details</h1>
-    <p id="timer">Waiting for the match to start...</p>
+    <p id="timer">Details will be shared at 16:50</p>
     <div id="roomDetails">
         <p>Room ID: 12345</p>
         <p>Password: abcd</p>
     </div>
 
     <script>
-        // Set match start time to 16:55 (4:55 PM)
-        var matchStartTime = new Date();
-        matchStartTime.setHours(16);  // Set hours to 16 (4 PM)
-        matchStartTime.setMinutes(55); // Set minutes to 55
+        // Set the time for details to be shared
+        var detailsShareTime = new Date();
+        detailsShareTime.setHours(16);  // Set hours to 16 (4 PM)
+        detailsShareTime.setMinutes(50); // Set minutes to 50
 
         var countdown = setInterval(function() {
             var now = new Date().getTime();
-            var timeLeft = matchStartTime - now;
+            var timeLeft = detailsShareTime - now;
 
-            if (timeLeft <= 600000) {  // 600000 ms = 10 minutes before match
+            if (timeLeft <= 0) {  // After 16:50
                 document.getElementById("timer").style.display = "none";
                 document.getElementById("roomDetails").style.display = "block";
                 clearInterval(countdown);
             } else {
                 var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                document.getElementById("timer").innerHTML = "Time until match starts: " + minutes + "m " + seconds + "s";
+                document.getElementById("timer").innerHTML = "Details will be shared at 16:50";
             }
         }, 1000);
     </script>
