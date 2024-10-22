@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Match Room Details</title>
+    <style>
+        #roomDetails {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Match Room Details</h1>
+    <p id="timer">Waiting for the match to start...</p>
+    <div id="roomDetails">
+        <p>Room ID: 12345</p>
+        <p>Password: abcd</p>
+    </div>
+
+    <script>
+        var matchStartTime = new Date("Oct 22, 2024 15:00:00").getTime();
+
+        var countdown = setInterval(function() {
+            var now = new Date().getTime();
+            var timeLeft = matchStartTime - now;
+
+            if (timeLeft <= 600000) {  // 600000 ms = 10 minutes
+                document.getElementById("timer").style.display = "none";
+                document.getElementById("roomDetails").style.display = "block";
+                clearInterval(countdown);
+            } else {
+                var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                document.getElementById("timer").innerHTML = "Time until match starts: " + minutes + "m " + seconds + "s";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
